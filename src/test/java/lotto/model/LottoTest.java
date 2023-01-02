@@ -3,6 +3,8 @@ package lotto.model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,12 +25,12 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1,2,3,4,5,6;1",
-            "1,2,3,4,5,7;2",
-            "1,2,3,4,5,8;3",
-            "1,2,3,4,8,9;4",
-            "1,2,3,8,9,10;5",
-            "1,2,8,9,10,11;6"}, delimiter = ';')
+    @CsvSource(value = {"1,2,3,4,5,6;FIRST",
+            "1,2,3,4,5,7;SECOND",
+            "1,2,3,4,5,8;THIRD",
+            "1,2,3,4,8,9;FOURTH",
+            "1,2,3,8,9,10;FIFTH",
+            "1,2,8,9,10,11;DEFAULT"}, delimiter = ';')
     void checkLottoWin(String input, String expect){
         List<Integer> numbers = Arrays.stream(input.split(","))
                                 .map(Integer::parseInt)
@@ -37,7 +39,7 @@ class LottoTest {
         List<Integer> winNumbers = Arrays.asList(1,2,3,4,5,6);
         int bonus = 7;
         Lotto lotto = new Lotto(numbers);
-        Assertions.assertEquals(lotto.checkWin(winNumbers, bonus), Integer.parseInt(expect));
+        Assertions.assertEquals(lotto.checkWin(winNumbers, bonus).name(), expect);
     }
 
 }
