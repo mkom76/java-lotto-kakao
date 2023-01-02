@@ -1,19 +1,24 @@
 package lotto.model;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Winner {
-    public Map<String, Integer> rankingCount(List<Ranking> rankings) {
-        Map<String, Integer> rankingResult = new HashMap<>();
+    public Map<Ranking, Integer> rankingCount(List<Ranking> rankings) {
+        Map<Ranking, Integer> rankingResult = new EnumMap<>(Ranking.class);
         for( Ranking rank : Ranking.values()){
-            rankingResult.put(rank.name(), 0);
+            rankingResult.put(rank, 0);
         }
         for (Ranking ranking : rankings){
-            rankingResult.put(ranking.name(), rankingResult.get(ranking.name()) + 1);
+            rankingResult.put(ranking, rankingResult.get(ranking) + 1);
         }
         return Collections.unmodifiableMap(rankingResult);
+    }
+
+    public double revenue(Map<Ranking, Integer> rankingResult, int money) {
+        double prizeSum = 0;
+        for (Ranking rank : rankingResult.keySet()){
+            prizeSum += rank.getPrize() * rankingResult.get(rank);
+        }
+        return Math.round((prizeSum / money)*100) / 100.0;
     }
 }

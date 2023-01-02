@@ -3,10 +3,7 @@ package lotto.model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,15 +16,33 @@ class WinnerTest {
         Ranking Rank3 = Ranking.DEFAULT;
         List<Ranking> input = Arrays.asList(Rank1, Rank2, Rank3);
 
-        Map<String, Integer> rankingResult  = new HashMap<>() {{
-            put("FIRST", 1);
-            put("SECOND", 0);
-            put("THIRD", 1);
-            put("FOURTH", 0);
-            put("FIFTH", 0);
-            put("DEFAULT", 1);
+        Map<Ranking, Integer> rankingResult  = new EnumMap<>(Ranking.class) {{
+            put(Ranking.FIRST, 1);
+            put(Ranking.SECOND, 0);
+            put(Ranking.THIRD, 1);
+            put(Ranking.FOURTH, 0);
+            put(Ranking.FIFTH, 0);
+            put(Ranking.DEFAULT, 1);
         }};
 
         Assertions.assertEquals(winner.rankingCount(input), rankingResult);
+    }
+
+    @Test
+    void calRevenue(){
+        Winner winner = new Winner();
+
+        int money = 3000;
+        Map<Ranking, Integer> rankingResult  = new EnumMap<>(Ranking.class) {{
+            put(Ranking.FIRST, 1);
+            put(Ranking.SECOND, 0);
+            put(Ranking.THIRD, 1);
+            put(Ranking.FOURTH, 0);
+            put(Ranking.FIFTH, 0);
+            put(Ranking.DEFAULT, 1);
+        }};
+
+
+        Assertions.assertEquals(winner.revenue(rankingResult, money), 667166.67);
     }
 }
