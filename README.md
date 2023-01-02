@@ -49,5 +49,7 @@ lottos
    - return list
 
 winner
- - w3 수익률 계산(list w2, 구입금액)
+ - ranking count(w2)
+   - 
+ - w3 수익률 계산(ranking count, 구입금액)
    - 수익률 계산 double return
