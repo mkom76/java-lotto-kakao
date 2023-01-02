@@ -1,11 +1,17 @@
 package lotto.model;
 
+import lotto.utils.RandomNumbersGenerator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
     List<Integer> lotto;
+
+    public Lotto() {
+        this(RandomNumbersGenerator.generateRandomNumbers());
+    }
 
     public Lotto(List<Integer> lotto) {
         Collections.sort(lotto);
@@ -23,7 +29,7 @@ public class Lotto {
                 .size();
         return Ranking.findRanking(matchedNum, checkBonus(bonus));
     }
-    
+
     private boolean checkBonus(int bonus){
         return lotto.contains(bonus);
     }
