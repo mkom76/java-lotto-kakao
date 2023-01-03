@@ -87,6 +87,7 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonusNumber = stringToInteger(scanner.nextLine());
+        System.out.println();
         checkInRange(bonusNumber);
         checkDuplicateLottoNumberWithBonusNumber(lottoNumbers, bonusNumber);
         return bonusNumber;

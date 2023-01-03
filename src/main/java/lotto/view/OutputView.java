@@ -19,6 +19,7 @@ public class OutputView {
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getLotto());
         }
+        System.out.println();
     }
 
     public void printStatistic(Map<Ranking, Integer> rankingResult){
