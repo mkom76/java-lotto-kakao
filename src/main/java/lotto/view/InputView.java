@@ -43,7 +43,8 @@ public class InputView {
     private List<Integer> stringToIntgerList(String input) {
         List<Integer> numbers;
         try {
-            numbers = Arrays.stream(input.split(","))
+            numbers = Arrays.stream(input.replaceAll("\\s", "")
+                            .split(","))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         }
