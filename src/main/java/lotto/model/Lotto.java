@@ -27,7 +27,10 @@ public class Lotto {
                 .filter(winNumbers::contains)
                 .collect(Collectors.toSet())
                 .size();
-        return Ranking.findRanking(matchedNum, checkBonus(bonus));
+        if(matchedNum == 5) {
+            return Ranking.findRanking(matchedNum, checkBonus(bonus));
+        }
+        return Ranking.findRanking(matchedNum, false);
     }
 
     private boolean checkBonus(int bonus){

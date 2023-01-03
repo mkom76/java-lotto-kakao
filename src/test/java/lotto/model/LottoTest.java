@@ -28,9 +28,11 @@ class LottoTest {
     @CsvSource(value = {"1,2,3,4,5,6;FIRST",
             "1,2,3,4,5,7;SECOND",
             "1,2,3,4,5,8;THIRD",
-            "1,2,3,4,8,9;FOURTH",
+            "1,2,3,4,7,9;FOURTH",
             "1,2,3,8,9,10;FIFTH",
-            "1,2,8,9,10,11;DEFAULT"}, delimiter = ';')
+            "1,2,8,9,10,11;DEFAULT",
+            "1,8,9,10,11,12,;DEFAULT",
+            "8,9,10,11,12,13;DEFAULT"}, delimiter = ';')
     void checkLottoWin(String input, String expect){
         List<Integer> numbers = Arrays.stream(input.split(","))
                                 .map(Integer::parseInt)
