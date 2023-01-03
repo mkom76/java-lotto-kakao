@@ -19,9 +19,15 @@ public class OutputView {
     }
 
     public void printStatistic(Map<Ranking, Integer> rankingResult){
+        System.out.println("당첨 통계\n" +
+                "---------");
         for (int i = Ranking.values().length -2 ; i >= 0  ; i--){
             System.out.print(Ranking.values()[i].getHowManyMatches());
             System.out.println(String.format("- %d개", rankingResult.get(Ranking.values()[i])));
         }
+    }
+
+    public void printRevenue(double revenue){
+        System.out.println(String.format("총 수익률은 %.2f입니다.", revenue));
     }
 }

@@ -6,7 +6,6 @@ import lotto.model.Winner;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +26,6 @@ public class LottoController {
         Map<Ranking, Integer> rankingResult = winner.rankingCount(rankings);
 
         outputView.printStatistic(rankingResult);
-
-
+        outputView.printRevenue(winner.revenue(rankingResult, money));
     }
 }
