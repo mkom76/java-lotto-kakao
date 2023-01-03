@@ -3,6 +3,9 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 구매한 로또 객체들을 관리하는 클래스입니다.
+ */
 public class Lottos {
 
     List<Lotto> lottos = new ArrayList<>();

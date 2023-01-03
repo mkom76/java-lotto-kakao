@@ -2,6 +2,9 @@ package lotto.model;
 
 import java.util.Arrays;
 
+/**
+ * 각 로또 등수에 따른 정보들을 모아두었습니다.
+ */
 public enum Ranking {
     FIRST(2000000000, 6, false, "6개 일치 (2000000000원)"),
     SECOND(30000000, 5, true, "5개 일치, 보너스 볼 일치(30000000원)"),
@@ -14,13 +17,13 @@ public enum Ranking {
     private final int count;
     private final boolean hasBonusNumber;
 
-    private final String howManyMatches;
+    private final String resultLog;
 
-    Ranking(int prize, int count, boolean hasBonusNumber, String howManyMatches) {
+    Ranking(int prize, int count, boolean hasBonusNumber, String resultLog) {
         this.prize = prize;
         this.count = count;
         this.hasBonusNumber = hasBonusNumber;
-        this.howManyMatches = howManyMatches;
+        this.resultLog = resultLog;
     }
 
     public static Ranking findRanking(int cnt, boolean hasBonusNumber) {
@@ -34,7 +37,7 @@ public enum Ranking {
         return prize;
     }
 
-    public String getHowManyMatches(){
-        return howManyMatches;
+    public String getResultLog(){
+        return resultLog;
     }
 }

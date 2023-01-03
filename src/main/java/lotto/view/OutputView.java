@@ -6,6 +6,9 @@ import lotto.model.Ranking;
 
 import java.util.Map;
 
+/**
+ * 모델의 정보를 컨트롤러에게서 넘겨받아 출력하는 클래스입니다.
+ */
 public class OutputView {
 
     public void printNumberOfLottos(Lottos lottos){
@@ -22,7 +25,7 @@ public class OutputView {
         System.out.println("당첨 통계\n" +
                 "---------");
         for (int i = Ranking.values().length -2 ; i >= 0  ; i--){
-            System.out.print(Ranking.values()[i].getHowManyMatches());
+            System.out.print(Ranking.values()[i].getResultLog());
             System.out.println(String.format("- %d개", rankingResult.get(Ranking.values()[i])));
         }
     }

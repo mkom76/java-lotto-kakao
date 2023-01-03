@@ -8,12 +8,11 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class RandomNumbersGeneratorTest {
-    RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
     List<Integer> randomNumbers;
 
     @BeforeEach
     void setUp() {
-        randomNumbers = randomNumbersGenerator.generateRandomNumbers();
+        randomNumbers = RandomNumbersGenerator.generateRandomNumbers();
     }
 
     @Test

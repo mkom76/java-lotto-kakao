@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 로또 번호를 가지는 일급객체입니다.
+ */
 public class Lotto {
     List<Integer> lotto;
 

@@ -3,6 +3,10 @@ package lotto.view;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * User Input을 받는 클래스입니다.
+ * 각 사용자 입력에 대한 validation check도 진행합니다.
+ */
 public class InputView {
     public int receiveMoneyUserInput() {
         Scanner scanner = new Scanner(System.in);
