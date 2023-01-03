@@ -97,6 +97,4 @@ public class InputView {
             throw new IllegalArgumentException("보너스 볼은 로또 번호와 중복되면 안됩니다.");
         }
     }
-
-
 }

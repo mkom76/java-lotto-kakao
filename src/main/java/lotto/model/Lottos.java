@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -8,27 +9,28 @@ import java.util.List;
  */
 public class Lottos {
 
-    List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(int input) {
-        addRandom(input);
+    public Lottos(int numberOfLottos) {
+        addRandom(numberOfLottos);
     }
 
-    private void addRandom(int input) {
-        for (int i = 0; i < input; i++) {
+    private void addRandom(int numberOfLottos) {
+        for (int i = 0; i < numberOfLottos; i++) {
             lottos.add(new Lotto());
         }
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        List<Lotto> lottosReadOnly = new ArrayList<>(lottos);
+        return lottosReadOnly;
     }
 
     public List<Ranking> getRankings(List<Integer> winNumbers, int bonus) {
-        List<Ranking> rankings = new ArrayList<>();
+        final List<Ranking> rankings = new ArrayList<>();
         for(Lotto lotto: lottos){
             rankings.add(lotto.checkWin(winNumbers, bonus));
         }
-        return rankings;
+        return Collections.unmodifiableList(rankings);
     }
 }

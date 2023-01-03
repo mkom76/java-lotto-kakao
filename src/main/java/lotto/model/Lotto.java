@@ -2,6 +2,8 @@ package lotto.model;
 
 import lotto.utils.RandomNumbersGenerator;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +12,7 @@ import java.util.stream.Collectors;
  * 로또 번호를 가지는 일급객체입니다.
  */
 public class Lotto {
-    List<Integer> lotto;
+    private final List<Integer> lotto;
 
     public Lotto() {
         this(RandomNumbersGenerator.generateRandomNumbers());
@@ -22,7 +24,8 @@ public class Lotto {
     }
 
     public List<Integer> getLotto() {
-        return lotto;
+        List<Integer> lottoReadOnly = new ArrayList<>(lotto);   // 방어적 복사
+        return Collections.unmodifiableList(lottoReadOnly);
     }
 
     public Ranking checkWin(List<Integer> winNumbers, int bonus) {
