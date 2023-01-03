@@ -4,68 +4,71 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.common.input.InputAnalysisProcess;
 
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 
 public class InputViewTest {
+    InputView inputView = new InputView();
 
     @Test
     void checkThousandUnit() {
-        InputView inputView = new InputView();
         String input = "10000";
-        Assertions.assertEquals(inputView.receiveMoneyUserInput(input), 10000);
+        systemIn(input);
+        Assertions.assertEquals(inputView.receiveMoneyUserInput(), 10000);
     }
     @Test
     void checkNotThousandUnit() {
-        InputView inputView = new InputView();
-        String input = "12345";
+        String input = "12345\n";
+        systemIn(input);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            inputView.receiveMoneyUserInput(input);
+            inputView.receiveMoneyUserInput();
         });
     }
 
     @Test
     void checkStringInput() {
-        InputView inputView = new InputView();
-        String input = "abcde";
+        String input = "abcde\n";
+        systemIn(input);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            inputView.receiveMoneyUserInput(input);
+            inputView.receiveMoneyUserInput();
         });
     }
 
     @Test
     void checkLastLottoNumbers(){
-        InputView inputView = new InputView();
-        String input = "1,2,3,4,5,6";
-        Assertions.assertEquals(inputView.receiveLastLottoNumbers(input), Arrays.asList(1,2,3,4,5,6));
+        String input = "1,2,3,4,5,6\n";
+        systemIn(input);
+        Assertions.assertEquals(inputView.receiveLastLottoNumbers(), Arrays.asList(1,2,3,4,5,6));
     }
 
     @Test
     void checkLastLottoNumbersDuplicate(){
-        InputView inputView = new InputView();
-        String input = "1,2,3,4,5,5";
-
+        String input = "1,2,3,4,5,5\n";
+        systemIn(input);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            inputView.receiveLastLottoNumbers(input);
+            inputView.receiveLastLottoNumbers();
         });
     }
 
     @Test
     void checkLastLottoNumbersWrongSize(){
-        InputView inputView = new InputView();
-        String input = "1,2,3,4,5";
-
+        String input = "1,2,3,4,5\n";
+        systemIn(input);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            inputView.receiveLastLottoNumbers(input);
+            inputView.receiveLastLottoNumbers();
         });
     }
 
     @Test
     void checkLastLottoNumbersString(){
-        InputView inputView = new InputView();
-        String input = "1,2,3,4,5,5";
-
+        String input = "1,2,3,4,5,5\n";
+        systemIn(input);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            inputView.receiveLastLottoNumbers(input);
+            inputView.receiveLastLottoNumbers();
         });
+    }
+
+    protected void systemIn(String input) {
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
     }
 }

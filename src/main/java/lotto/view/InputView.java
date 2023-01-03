@@ -4,8 +4,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class InputView {
-    public int receiveMoneyUserInput(String input) {
-        int money = stringToInteger(input);
+    public int receiveMoneyUserInput() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("구입금액을 입력해 주세요.");
+        int money = stringToInteger(scanner.nextLine());
         isThousandUnit(money);
         return money;
     }
@@ -26,9 +28,11 @@ public class InputView {
         }
     }
 
-    public List<Integer> receiveLastLottoNumbers(String input) {
+    public List<Integer> receiveLastLottoNumbers() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         List<Integer> lottoNumbers;
-        lottoNumbers = stringToIntgerList(input);
+        lottoNumbers = stringToIntgerList(scanner.nextLine());
         checkSize(lottoNumbers);
         checkDuplicate(lottoNumbers);
 
