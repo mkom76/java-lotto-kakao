@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.Constants;
 import lotto.model.Lottos;
 import lotto.model.Ranking;
 import lotto.model.Winner;
@@ -16,7 +17,7 @@ public class LottoController {
 
     public void start() {
         int money = inputView.receiveMoneyUserInput();
-        Lottos lottos = new Lottos(money / 1000);
+        Lottos lottos = new Lottos(money / Constants.THOUSAND);
         outputView.printNumberOfLottos(lottos);
         outputView.printLottos(lottos);
 

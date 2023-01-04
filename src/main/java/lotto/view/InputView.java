@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.constant.Constants;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,7 +31,7 @@ public class InputView {
     }
 
     private void checkThousandUnit(int money) {
-        if (money % 1000 != 0) {
+        if (money % Constants.THOUSAND != 0) {
             throw new IllegalArgumentException("구매 금액은 1000원 단위로 입력해야 합니다.");
         }
     }
@@ -59,12 +61,12 @@ public class InputView {
     }
 
     private String[] removeSpaceAndSplit(String input) {
-        return input.replaceAll("\\s", "").split(",");
+        return input.replaceAll(Constants.SPACES, Constants.EMPTY_STRING).split(Constants.COMMA);
 
     }
 
     private void checkSize(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+        if (lottoNumbers.size() != Constants.LOTTO_SIZE) {
             throw new IllegalArgumentException("로또 번호는 6개를 입력해야 합니다.");
         }
     }
@@ -77,7 +79,7 @@ public class InputView {
     }
 
     private void checkInRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < Constants.LOTTO_MIN_NUM || number > Constants.LOTTO_MAX_NUM) {
             throw new IllegalArgumentException("로또 번호는 1~45 사이입니다.");
         }
     }
