@@ -28,7 +28,7 @@ public class Lottos {
 
     public List<Ranking> getRankings(List<Integer> winNumbers, int bonus) {
         final List<Ranking> rankings = new ArrayList<>();
-        for(Lotto lotto: lottos){
+        for (Lotto lotto : lottos) {
             rankings.add(lotto.checkWin(winNumbers, bonus));
         }
         return Collections.unmodifiableList(rankings);

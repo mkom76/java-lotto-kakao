@@ -33,13 +33,13 @@ public class Lotto {
                 .filter(winNumbers::contains)
                 .collect(Collectors.toSet())
                 .size();
-        if(matchedNum == 5) {
+        if (matchedNum == 5) {
             return Ranking.findRanking(matchedNum, checkBonus(bonus));
         }
         return Ranking.findRanking(matchedNum, false);
     }
 
-    private boolean checkBonus(int bonus){
+    private boolean checkBonus(int bonus) {
         return lotto.contains(bonus);
     }
 }

@@ -22,14 +22,14 @@ public class InputView {
         int number;
         try {
             number = Integer.parseInt(input);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException("숫자로 입력해야 합니다.");
         }
         return number;
     }
 
     private void checkThousandUnit(int money) {
-        if (money % 1000 != 0){
+        if (money % 1000 != 0) {
             throw new IllegalArgumentException("구매 금액은 1000원 단위로 입력해야 합니다.");
         }
     }
@@ -52,8 +52,7 @@ public class InputView {
             numbers = Arrays.stream(removeSpaceAndSplit(input))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException("숫자로 입력해야 합니다.");
         }
         return numbers;
@@ -65,26 +64,26 @@ public class InputView {
     }
 
     private void checkSize(List<Integer> lottoNumbers) {
-        if(lottoNumbers.size() != 6){
+        if (lottoNumbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 6개를 입력해야 합니다.");
         }
     }
 
     private void checkDuplicate(List<Integer> lottoNumbers) {
         Set<Integer> splitedInputSet = new HashSet<>(lottoNumbers);
-        if(splitedInputSet.size() < lottoNumbers.size()){
+        if (splitedInputSet.size() < lottoNumbers.size()) {
             throw new IllegalArgumentException("로또 번호는 중복 입력 해서는 안됩니다.");
         }
     }
 
-    private void checkInRange(int number){
-        if ( number < 1 || number > 45){
+    private void checkInRange(int number) {
+        if (number < 1 || number > 45) {
             throw new IllegalArgumentException("로또 번호는 1~45 사이입니다.");
         }
     }
 
-    private void checkLottoNumbersInRange(List<Integer> lottoNumbers){
-        for (int lottoNumber: lottoNumbers) {
+    private void checkLottoNumbersInRange(List<Integer> lottoNumbers) {
+        for (int lottoNumber : lottoNumbers) {
             checkInRange(lottoNumber);
         }
     }
@@ -99,8 +98,8 @@ public class InputView {
         return bonusNumber;
     }
 
-    private void checkDuplicateLottoNumberWithBonusNumber(List<Integer> lottoNumbers, int bonusNumber){
-        if (lottoNumbers.contains(bonusNumber)){
+    private void checkDuplicateLottoNumberWithBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
+        if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 볼은 로또 번호와 중복되면 안됩니다.");
         }
     }

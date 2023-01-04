@@ -37,7 +37,7 @@ public enum Ranking {
         return prize;
     }
 
-    public String getResultLog(){
+    public String getResultLog() {
         return resultLog;
     }
 }

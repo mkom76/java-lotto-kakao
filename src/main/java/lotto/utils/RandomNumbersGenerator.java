@@ -10,13 +10,14 @@ import java.util.List;
  */
 public class RandomNumbersGenerator {
 
-    private RandomNumbersGenerator(){
+    private RandomNumbersGenerator() {
 
     }
+
     public static List<Integer> generateRandomNumbers() {
         List<Integer> numbers = new ArrayList<>();
 
-        for (int i = 1; i <= 45; i++){
+        for (int i = 1; i <= 45; i++) {
             numbers.add(i);
         }
         Collections.shuffle(numbers);

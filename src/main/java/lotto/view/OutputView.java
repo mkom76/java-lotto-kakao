@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class OutputView {
 
-    public void printNumberOfLottos(Lottos lottos){
+    public void printNumberOfLottos(Lottos lottos) {
         System.out.println(String.format("%d개를 구매했습니다.", lottos.getLottos().size()));
     }
 
@@ -22,16 +22,16 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printStatistic(Map<Ranking, Integer> rankingResult){
+    public void printStatistic(Map<Ranking, Integer> rankingResult) {
         System.out.println("당첨 통계\n" +
                 "---------");
-        for (int i = Ranking.values().length -2 ; i >= 0  ; i--){
+        for (int i = Ranking.values().length - 2; i >= 0; i--) {
             System.out.print(Ranking.values()[i].getResultLog());
             System.out.println(String.format("- %d개", rankingResult.get(Ranking.values()[i])));
         }
     }
 
-    public void printRevenue(double revenue){
+    public void printRevenue(double revenue) {
         System.out.println(String.format("총 수익률은 %.2f입니다.", revenue));
     }
 }
