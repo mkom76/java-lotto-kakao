@@ -17,14 +17,15 @@ class LottosTest {
         input = 10;
         lottos = new Lottos(input);
     }
+
     @Test
     void checkSizeOfLottos() {
         Assertions.assertEquals(lottos.getLottos().size(), 10);
     }
 
     @Test
-    void checkSizeOfRankings(){
-        List<Integer> winNumbers = Arrays.asList(1,2,3,4,5,6);
+    void checkSizeOfRankings() {
+        List<Integer> winNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonus = 7;
         Assertions.assertEquals(lottos.getRankings(winNumbers, bonus).size(), 10);
     }

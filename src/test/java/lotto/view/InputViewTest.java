@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class InputViewTest {
     InputView inputView;
-    static final List<Integer> DUMMY_LIST = Arrays.asList(1,2,3,4,5,6);
+    static final List<Integer> DUMMY_LIST = Arrays.asList(1, 2, 3, 4, 5, 6);
 
     @BeforeEach
     void setUp() {
@@ -28,6 +28,11 @@ public class InputViewTest {
         Assertions.assertEquals(inputView.receiveMoneyUserInput(), 10000);
     }
 
+    /**
+     * 1000단위가 아닌 입력, 숫자가 아닌 입력 체크
+     *
+     * @param input invalid inputs
+     */
     @ParameterizedTest
     @ValueSource(strings = {"12345", "abcde"})
     void checkInvalidMoneyUserInput(String input) {
@@ -38,7 +43,7 @@ public class InputViewTest {
     }
 
     @Test
-    void checkValidLottoNumbersUserInput(){
+    void checkValidLottoNumbersUserInput() {
         String input = "1,2,3,4,5,6";
         systemIn(input);
         Assertions.assertEquals(inputView.receiveWinLottoNumbers(), DUMMY_LIST);
@@ -46,11 +51,12 @@ public class InputViewTest {
 
     /**
      * 중복되는 숫자, 사이즈가 6이 아닌 입력, 숫자가 아닌 입력, 1~45 범위가 아닌 입력 체크
+     *
      * @param input invalid inputs
      */
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,5", "1,2,3,4,5", "1,2,3,4,5,a", "51,52,53,54,56,55"})
-    void checkInvalidLottoNumberUserInput(String input){
+    void checkInvalidLottoNumberUserInput(String input) {
         systemIn(input);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             inputView.receiveWinLottoNumbers();
@@ -58,7 +64,7 @@ public class InputViewTest {
     }
 
     @Test
-    void checkValidBonusNumber(){
+    void checkValidBonusNumber() {
         String input = "7";
         systemIn(input);
         Assertions.assertEquals(inputView.receiveWinBonusNumber(DUMMY_LIST), 7);
@@ -66,11 +72,12 @@ public class InputViewTest {
 
     /**
      * 1~45 범위 밖, 숫자가 아닌 입력, 로또번호에 포함되어 있는 숫자 입력 확인
+     *
      * @param input invalid inputs
      */
     @ParameterizedTest
     @ValueSource(strings = {"51", "abc", "1"})
-    void checkInvalidBonusNumberUserInput(String input){
+    void checkInvalidBonusNumberUserInput(String input) {
         systemIn(input);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             inputView.receiveWinBonusNumber(DUMMY_LIST);
