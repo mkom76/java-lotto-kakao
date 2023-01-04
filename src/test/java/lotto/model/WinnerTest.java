@@ -33,13 +33,13 @@ class WinnerTest {
         Ranking Rank3 = Ranking.DEFAULT;
         List<Ranking> input = Arrays.asList(Rank1, Rank2, Rank3);
 
-        Assertions.assertEquals(winner.rankingCount(input), rankingResult);
+        Assertions.assertEquals(winner.countRanking(input), rankingResult);
     }
 
     @Test
     void calRevenue() {
         int money = 3000;
 
-        Assertions.assertEquals(winner.revenue(rankingResult, money), 667166.67);
+        Assertions.assertEquals(winner.calculateRevenue(rankingResult, money), 667166.67);
     }
 }

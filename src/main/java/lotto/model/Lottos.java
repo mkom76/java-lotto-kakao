@@ -23,7 +23,7 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         List<Lotto> lottosReadOnly = new ArrayList<>(lottos);
-        return lottosReadOnly;
+        return Collections.unmodifiableList(lottosReadOnly);
     }
 
     public List<Ranking> getRankings(List<Integer> winNumbers, int bonus) {
