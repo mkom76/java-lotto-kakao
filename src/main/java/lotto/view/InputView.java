@@ -16,7 +16,7 @@ public class InputView {
         scanner = new Scanner(System.in);
         System.out.println("구입금액을 입력해 주세요.");
         int money = stringToInteger(scanner.nextLine());
-        checkThousandUnit(money);
+        checkUnderPriceOfLotto(money);
         return money;
     }
 
@@ -30,9 +30,9 @@ public class InputView {
         return number;
     }
 
-    private void checkThousandUnit(int money) {
-        if (money % Constants.THOUSAND != 0) {
-            throw new IllegalArgumentException("구매 금액은 1000원 단위로 입력해야 합니다.");
+    private void checkUnderPriceOfLotto(int money) {
+        if (money < Constants.PRICE_OF_LOTTO) {
+            throw new IllegalArgumentException("1장에 1000원이므로 1000원 이상을 입력해주세요.");
         }
     }
 

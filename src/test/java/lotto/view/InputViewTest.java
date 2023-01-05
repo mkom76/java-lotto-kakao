@@ -29,12 +29,12 @@ public class InputViewTest {
     }
 
     /**
-     * 1000단위가 아닌 입력, 숫자가 아닌 입력 체크
+     * 1000이 안되는 입력, 숫자가 아닌 입력 체크
      *
      * @param input invalid inputs
      */
     @ParameterizedTest
-    @ValueSource(strings = {"12345", "abcde"})
+    @ValueSource(strings = {"500", "abcde"})
     void checkInvalidMoneyUserInput(String input) {
         systemIn(input);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {

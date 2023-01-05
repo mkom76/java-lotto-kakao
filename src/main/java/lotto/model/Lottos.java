@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constant.Constants;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +13,8 @@ public class Lottos {
 
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(int numberOfLottos) {
+    public Lottos(int money) {
+        int numberOfLottos = money / Constants.PRICE_OF_LOTTO;
         addRandom(numberOfLottos);
     }
 
