@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.Constants;
 import lotto.utils.RandomNumbersGenerator;
 
 import java.sql.Array;
@@ -19,8 +20,28 @@ public class Lotto {
     }
 
     public Lotto(List<Integer> lotto) {
+        checkRangeAll(lotto);
+        checkSize(lotto);
         Collections.sort(lotto);
         this.lotto = lotto;
+    }
+
+    private void checkRangeAll(List<Integer> lotto) {
+        for (int num : lotto) {
+            checkRange(num);
+        }
+    }
+
+    private void checkRange(int num) {
+        if (num < Constants.LOTTO_MIN_NUM || num > Constants.LOTTO_MAX_NUM) {
+            throw new IllegalArgumentException("로또번호는 1~45 사이여야 합니다.");
+        }
+    }
+
+    private void checkSize(List<Integer> lotto) {
+        if (lotto.size() != 6) {
+            throw new IllegalArgumentException("로또는 6개의 숫자로 구성되어야 합니다.");
+        }
     }
 
     public List<Integer> getLotto() {
