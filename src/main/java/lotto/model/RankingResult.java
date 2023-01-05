@@ -13,7 +13,7 @@ public class RankingResult {
 
     private final Map<Ranking, Integer> rankingResult;
 
-    public RankingResult(){
+    public RankingResult() {
         rankingResult = new EnumMap<>(Ranking.class);
         for (Ranking rank : Ranking.values()) {
             rankingResult.put(rank, 0);
@@ -22,7 +22,7 @@ public class RankingResult {
 
     public RankingResult(List<Ranking> rankingResultList) {
         this();
-        for(Ranking rank : rankingResultList){
+        for (Ranking rank : rankingResultList) {
             rankingResult.put(rank, rankingResult.get(rank) + 1);
         }
     }

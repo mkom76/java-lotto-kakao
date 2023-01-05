@@ -18,16 +18,16 @@ public class WinLotto {
     }
 
     private void checkDuplicate(Lotto lotto, BonusNumber bonusNumber) {
-        if(lotto.getLotto().contains(bonusNumber.getBonusNumber())){
+        if (lotto.getLotto().contains(bonusNumber.getBonusNumber())) {
             throw new IllegalArgumentException("보너스 숫자는 로또 숫자와 겹칠 수 없습니다.");
         }
     }
 
-    public Lotto getWinLotto(){
+    public Lotto getWinLotto() {
         return winLotto;
     }
 
-    public BonusNumber getBonusNumber(){
+    public BonusNumber getBonusNumber() {
         return bonusNumber;
     }
 }
