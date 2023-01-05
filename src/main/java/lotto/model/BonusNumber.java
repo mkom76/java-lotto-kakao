@@ -2,6 +2,9 @@ package lotto.model;
 
 import lotto.constant.Constants;
 
+/**
+ * 보너스넘버를 감싸는 일급컬렉션입니다.
+ */
 public class BonusNumber {
 
     private final int bonusNumber;

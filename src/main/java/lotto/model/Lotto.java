@@ -49,18 +49,18 @@ public class Lotto {
         return Collections.unmodifiableList(lottoReadOnly);
     }
 
-    public Ranking checkWin(List<Integer> winNumbers, int bonus) {
+    public Ranking checkWin(WinLotto winLotto) {
         int matchedNum = lotto.stream()
-                .filter(winNumbers::contains)
+                .filter(winLotto.getWinLotto().getLotto()::contains)
                 .collect(Collectors.toSet())
                 .size();
         if (matchedNum == 5) {
-            return Ranking.findRanking(matchedNum, checkBonus(bonus));
+            return Ranking.findRanking(matchedNum, checkBonus(winLotto.getBonusNumber()));
         }
         return Ranking.findRanking(matchedNum, false);
     }
 
-    private boolean checkBonus(int bonus) {
-        return lotto.contains(bonus);
+    private boolean checkBonus(BonusNumber bonusNumber) {
+        return lotto.contains(bonusNumber.getBonusNumber());
     }
 }

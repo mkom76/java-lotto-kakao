@@ -26,10 +26,10 @@ public class Lottos {
         return Collections.unmodifiableList(lottosReadOnly);
     }
 
-    public List<Ranking> getRankings(List<Integer> winNumbers, int bonus) {
+    public List<Ranking> getRankings(WinLotto winLotto) {
         final List<Ranking> rankings = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            rankings.add(lotto.checkWin(winNumbers, bonus));
+            rankings.add(lotto.checkWin(winLotto));
         }
         return Collections.unmodifiableList(rankings);
     }

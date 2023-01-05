@@ -27,6 +27,7 @@ class LottosTest {
     void checkSizeOfRankings() {
         List<Integer> winNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonus = 7;
-        Assertions.assertEquals(lottos.getRankings(winNumbers, bonus).size(), 10);
+        WinLotto winLotto = new WinLotto(new Lotto(winNumbers), new BonusNumber(bonus));
+        Assertions.assertEquals(lottos.getRankings(winLotto).size(), 10);
     }
 }
