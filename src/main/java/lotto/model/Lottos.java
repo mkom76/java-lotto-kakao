@@ -29,11 +29,11 @@ public class Lottos {
         return Collections.unmodifiableList(lottosReadOnly);
     }
 
-    public List<Ranking> getRankings(WinLotto winLotto) {
+    public RankingResult getRankings(WinLotto winLotto) {
         final List<Ranking> rankings = new ArrayList<>();
         for (Lotto lotto : lottos) {
             rankings.add(lotto.checkWin(winLotto));
         }
-        return Collections.unmodifiableList(rankings);
+        return new RankingResult(rankings);
     }
 }

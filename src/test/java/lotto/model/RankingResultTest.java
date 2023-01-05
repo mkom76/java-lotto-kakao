@@ -1,6 +1,7 @@
 package lotto.model;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,14 +10,27 @@ import java.util.List;
 import java.util.Map;
 
 public class RankingResultTest {
-    @Test
-    void checkRankingResultMaker() {
+
+    RankingResult rankingResult;
+
+    @BeforeEach
+    void setUp() {
         Ranking Rank1 = Ranking.FIRST;
         Ranking Rank2 = Ranking.THIRD;
         Ranking Rank3 = Ranking.DEFAULT;
         List<Ranking> rankingResultList = Arrays.asList(Rank1, Rank2, Rank3);
-        RankingResult rankingResult = new RankingResult(rankingResultList);
+        rankingResult = new RankingResult(rankingResultList);
+    }
 
+    @Test
+    void checkImmutable() {
+        Assertions.assertThrows(UnsupportedOperationException.class, () -> {
+            rankingResult.getRankingResult().put(Ranking.FIRST, 10);
+        });
+    }
+
+    @Test
+    void checkRankingResultMaker() {
         Map<Ranking, Integer> rankingResultMap = new EnumMap<>(Ranking.class) {{
             put(Ranking.FIRST, 1);
             put(Ranking.SECOND, 0);

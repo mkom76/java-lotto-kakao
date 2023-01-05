@@ -24,7 +24,7 @@ public class LottoController {
         WinLotto winLotto = new WinLotto(new Lotto(winNumbers), new BonusNumber(bonusNumber));
 
         // 구매한 로또들의 ranking 계산
-        RankingResult rankingResult = new RankingResult(lottos.getRankings(winLotto));
+        RankingResult rankingResult = lottos.getRankings(winLotto);
 
         // 각 ranking에 해당하는 로또 개수 총 수익률 출력
         outputView.printStatistic(rankingResult.getRankingResult());

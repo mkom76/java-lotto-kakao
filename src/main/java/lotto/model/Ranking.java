@@ -28,7 +28,8 @@ public enum Ranking {
 
     public static Ranking findRanking(int cnt, boolean hasBonusNumber) {
         return Arrays.stream(Ranking.values())
-                .filter(ranking -> ranking.count == cnt && ranking.hasBonusNumber == hasBonusNumber)
+                .filter(ranking -> ranking.hasBonusNumber == hasBonusNumber)
+                .filter(ranking -> ranking.count == cnt)
                 .findAny()
                 .orElse(DEFAULT);
     }
