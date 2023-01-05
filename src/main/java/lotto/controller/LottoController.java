@@ -5,8 +5,10 @@ import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoController {
     InputView inputView = new InputView();
@@ -15,8 +17,7 @@ public class LottoController {
     public void start() {
         // 사용자에게 돈을 입력받은 후 lottos(로또들) 생성
         int money = inputView.receiveMoneyUserInput();
-        Lottos lottos = new Lottos(money / Constants.THOUSAND);
-        outputView.printLottos(lottos);
+        Lottos lottos = constructLottos(money);
 
         // 사용자에게 당첨번호를 입력받은 후 winlotto(당첨번호) 생성
         List<Integer> winNumbers = inputView.receiveWinLottoNumbers();
@@ -29,5 +30,14 @@ public class LottoController {
         // 각 ranking에 해당하는 로또 개수 총 수익률 출력
         outputView.printStatistic(rankingResult.getRankingResult());
         outputView.printRevenue(rankingResult.calculateRevenue(money));
+    }
+
+    private Lottos constructLottos(int money) {
+        int numberOfManualLottos = inputView.receiveNumberOfManualLotto(money);
+        int numberOfAutomatedLottos = money / Constants.THOUSAND - numberOfManualLottos;
+        List<List<Integer>> manualLottos = inputView.receiveAllManualLottoNumber(numberOfManualLottos);
+        Lottos lottos = new Lottos(numberOfAutomatedLottos, manualLottos);
+        outputView.printLottos(lottos, numberOfManualLottos, numberOfAutomatedLottos);
+        return lottos;
     }
 }

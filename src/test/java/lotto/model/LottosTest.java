@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +16,7 @@ class LottosTest {
     @BeforeEach
     void setUp() {
         input = 10;
-        lottos = new Lottos(input);
+        lottos = new Lottos(input, new ArrayList<>());
     }
 
     @Test

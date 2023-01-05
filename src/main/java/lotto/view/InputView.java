@@ -15,9 +15,22 @@ public class InputView {
     public int receiveMoneyUserInput() {
         scanner = new Scanner(System.in);
         System.out.println("구입금액을 입력해 주세요.");
-        int money = stringToInteger(scanner.nextLine());
+        int money = stringToInteger(getNotNullOrEmptyUserInput());
         checkThousandUnit(money);
+        System.out.println();
         return money;
+    }
+
+    private String getNotNullOrEmptyUserInput() {
+        String input = scanner.nextLine();
+        checkNullOrEmpty(input);
+        return input;
+    }
+
+    private void checkNullOrEmpty(String input) {
+        if(Objects.isNull(input) || input.isEmpty()){
+            throw new IllegalArgumentException("null값을 입력하지 마세요.");
+        }
     }
 
     private int stringToInteger(String input) {
@@ -39,8 +52,7 @@ public class InputView {
     public List<Integer> receiveWinLottoNumbers() {
         scanner = new Scanner(System.in);
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        List<Integer> lottoNumbers;
-        lottoNumbers = stringToIntgerList(scanner.nextLine());
+        List<Integer> lottoNumbers = stringToIntgerList(getNotNullOrEmptyUserInput());
         checkSize(lottoNumbers);
         checkDuplicate(lottoNumbers);
         checkLottoNumbersInRange(lottoNumbers);
@@ -62,7 +74,6 @@ public class InputView {
 
     private String[] removeSpaceAndSplit(String input) {
         return input.replaceAll(Constants.SPACES, Constants.EMPTY_STRING).split(Constants.COMMA);
-
     }
 
     private void checkSize(List<Integer> lottoNumbers) {
@@ -93,7 +104,7 @@ public class InputView {
     public int receiveWinBonusNumber(List<Integer> lottoNumbers) {
         scanner = new Scanner(System.in);
         System.out.println("보너스 볼을 입력해 주세요.");
-        int bonusNumber = stringToInteger(scanner.nextLine());
+        int bonusNumber = stringToInteger(getNotNullOrEmptyUserInput());
         System.out.println();
         checkInRange(bonusNumber);
         checkDuplicateLottoNumberWithBonusNumber(lottoNumbers, bonusNumber);
@@ -104,5 +115,48 @@ public class InputView {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 볼은 로또 번호와 중복되면 안됩니다.");
         }
+    }
+
+    public int receiveNumberOfManualLotto(int money) {
+        scanner = new Scanner(System.in);
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        int numberOfManualLotto = stringToInteger(getNotNullOrEmptyUserInput());
+        checkOverBudget(numberOfManualLotto, money);
+        checkNegative(numberOfManualLotto);
+        System.out.println();
+
+        return numberOfManualLotto;
+    }
+
+    private void checkNegative(int numberOfManualLotto) {
+        if(numberOfManualLotto < 0){
+            throw new IllegalArgumentException("음수는 입력이 불가능합니다.");
+        }
+    }
+
+    private void checkOverBudget(int numberOfManualLotto, int money) {
+        if(money < numberOfManualLotto * Constants.THOUSAND){
+            throw new IllegalArgumentException("예산을 넘는 수동복권은 구매가 불가능합니다.");
+        }
+    }
+
+    public List<List<Integer>> receiveAllManualLottoNumber(int numOfManualLotto){
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+        List<List<Integer>> manualLottoList = new ArrayList<>();
+        for (int i = 0; i < numOfManualLotto; i++) {
+            manualLottoList.add(receiveManualLottoNumber());
+        }
+        System.out.println();
+        return manualLottoList;
+    }
+
+    public List<Integer> receiveManualLottoNumber() {
+        scanner = new Scanner(System.in);
+        List<Integer> manualLottoNumbers = stringToIntgerList(getNotNullOrEmptyUserInput());
+        checkSize(manualLottoNumbers);
+        checkDuplicate(manualLottoNumbers);
+        checkLottoNumbersInRange(manualLottoNumbers);
+
+        return manualLottoNumbers;
     }
 }

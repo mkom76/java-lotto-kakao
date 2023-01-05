@@ -16,7 +16,6 @@ public enum Ranking {
     private final int prize;
     private final int count;
     private final boolean hasBonusNumber;
-
     private final String resultLog;
 
     Ranking(int prize, int count, boolean hasBonusNumber, String resultLog) {
