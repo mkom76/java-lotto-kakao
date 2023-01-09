@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 /**
  * 구매한 로또 객체들을 관리하는 클래스입니다.
  */
@@ -17,8 +18,16 @@ public class Lottos {
         int numberOfManualLottos = manualLottos.size();
         int numberOfAutomatedLottos = money / Constants.PRICE_OF_LOTTO - numberOfManualLottos;
 
+        checkNegative(numberOfAutomatedLottos);
+
         addManual(manualLottos);
         addAutomated(numberOfAutomatedLottos);
+    }
+
+    private void checkNegative(int numberOfAutomatedLottos){
+        if (numberOfAutomatedLottos < 0){
+            throw new IllegalArgumentException("로또 개수는 음수일 수 없습니다.");
+        }
     }
 
     private void addManual(List<List<Integer>> manualLottos) {
