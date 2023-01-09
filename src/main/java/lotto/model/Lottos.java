@@ -17,19 +17,19 @@ public class Lottos {
         int numberOfManualLottos = manualLottos.size();
         int numberOfAutomatedLottos = money / Constants.PRICE_OF_LOTTO - numberOfManualLottos;
 
-        addAutomated(numberOfAutomatedLottos);
         addManual(manualLottos);
-    }
-
-    private void addAutomated(int numberOfLottos) {
-        for (int i = 0; i < numberOfLottos; i++) {
-            lottos.add(new Lotto());
-        }
+        addAutomated(numberOfAutomatedLottos);
     }
 
     private void addManual(List<List<Integer>> manualLottos) {
         for (List<Integer> manualLotto : manualLottos) {
             lottos.add(new Lotto(manualLotto));
+        }
+    }
+
+    private void addAutomated(int numberOfLottos) {
+        for (int i = 0; i < numberOfLottos; i++) {
+            lottos.add(new Lotto());
         }
     }
 

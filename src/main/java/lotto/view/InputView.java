@@ -20,6 +20,7 @@ public class InputView {
         UserInputValidator.checkNullOrEmpty(moneyUserInput);
         int money = UserInputValidator.stringToInteger(moneyUserInput);
         UserInputValidator.checkUnderPriceOfLotto(money);
+        System.out.println();
         return money;
     }
 
