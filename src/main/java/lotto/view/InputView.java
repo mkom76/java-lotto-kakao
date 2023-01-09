@@ -15,9 +15,21 @@ public class InputView {
     public int receiveMoneyUserInput() {
         scanner = new Scanner(System.in);
         System.out.println("구입금액을 입력해 주세요.");
-        int money = stringToInteger(scanner.nextLine());
+        int money = stringToInteger(getNotNullOrEmptyUserInput());
         checkUnderPriceOfLotto(money);
         return money;
+    }
+
+    private String getNotNullOrEmptyUserInput() {
+        String input = scanner.nextLine();
+        checkNullOrEmpty(input);
+        return input;
+    }
+
+    private void checkNullOrEmpty(String input) {
+        if(Objects.isNull(input) || input.isEmpty()){
+            throw new IllegalArgumentException("null값을 입력하지 마세요.");
+        }
     }
 
     private int stringToInteger(String input) {
@@ -39,8 +51,7 @@ public class InputView {
     public List<Integer> receiveWinLottoNumbers() {
         scanner = new Scanner(System.in);
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        List<Integer> lottoNumbers;
-        lottoNumbers = stringToIntgerList(scanner.nextLine());
+        List<Integer> lottoNumbers = stringToIntgerList(getNotNullOrEmptyUserInput());
         checkSize(lottoNumbers);
         checkDuplicate(lottoNumbers);
         checkLottoNumbersInRange(lottoNumbers);
@@ -93,7 +104,7 @@ public class InputView {
     public int receiveWinBonusNumber(List<Integer> lottoNumbers) {
         scanner = new Scanner(System.in);
         System.out.println("보너스 볼을 입력해 주세요.");
-        int bonusNumber = stringToInteger(scanner.nextLine());
+        int bonusNumber = stringToInteger(getNotNullOrEmptyUserInput());
         System.out.println();
         checkInRange(bonusNumber);
         checkDuplicateLottoNumberWithBonusNumber(lottoNumbers, bonusNumber);
