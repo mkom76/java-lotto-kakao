@@ -11,12 +11,12 @@ import java.util.Map;
  */
 public class OutputView {
 
-    public void printLottos(Lottos lottos) {
-        System.out.println(String.format("%d개를 구매했습니다.", lottos.getLottos().size()));
+    public void printLottos(Lottos lottos, int numberOfManualLottos) {
+        int numberOfAutomatedLottos = lottos.getLottos().size() - numberOfManualLottos;
+        System.out.println(String.format("수동으로 %d장, 자동으로 %d개를 구매했습니다.", numberOfManualLottos, numberOfAutomatedLottos));
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getLotto());
         }
-        System.out.println();
     }
 
     public void printStatistic(Map<Ranking, Integer> rankingResult) {

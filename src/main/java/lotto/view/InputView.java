@@ -139,4 +139,24 @@ public class InputView {
             throw new IllegalArgumentException("예산을 넘는 수동복권은 구매가 불가능합니다.");
         }
     }
+
+    public List<List<Integer>> receiveAllManualLottoNumber(int numOfManualLotto){
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+        List<List<Integer>> manualLottoList = new ArrayList<>();
+        for (int i = 0; i < numOfManualLotto; i++) {
+            manualLottoList.add(receiveManualLottoNumber());
+        }
+        System.out.println();
+        return manualLottoList;
+    }
+
+    public List<Integer> receiveManualLottoNumber() {
+        scanner = new Scanner(System.in);
+        List<Integer> manualLottoNumbers = stringToIntgerList(getNotNullOrEmptyUserInput());
+        checkSize(manualLottoNumbers);
+        checkDuplicate(manualLottoNumbers);
+        checkLottoNumbersInRange(manualLottoNumbers);
+
+        return manualLottoNumbers;
+    }
 }

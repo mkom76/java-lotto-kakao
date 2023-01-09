@@ -13,9 +13,14 @@ public class Lottos {
 
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(int money) {
-        int numberOfLottos = money / Constants.PRICE_OF_LOTTO;
-        addRandom(numberOfLottos);
+    public Lottos(int money, List<List<Integer>> manualLottos) {
+        int numberOfManualLottos = manualLottos.size();
+        int numberOfAutomatedLottos = money / Constants.PRICE_OF_LOTTO - numberOfManualLottos;
+
+        addRandom(numberOfAutomatedLottos);
+        for (List<Integer> manualLotto : manualLottos){
+            lottos.add(new Lotto(manualLotto));
+        }
     }
 
     private void addRandom(int numberOfLottos) {
