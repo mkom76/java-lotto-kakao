@@ -15,6 +15,7 @@ public class LottoController {
     public void start() {
         // 사용자에게 돈을 입력받은 후 lottos(로또들) 생성
         int money = inputView.receiveMoneyUserInput();
+        int numberOfManualLottos = inputView.receiveNumberOfManualLotto(money);
         Lottos lottos = new Lottos(money);
         outputView.printLottos(lottos);
 

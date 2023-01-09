@@ -116,4 +116,27 @@ public class InputView {
             throw new IllegalArgumentException("보너스 볼은 로또 번호와 중복되면 안됩니다.");
         }
     }
+
+    public int receiveNumberOfManualLotto(int money) {
+        scanner = new Scanner(System.in);
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        int numberOfManualLotto = stringToInteger(getNotNullOrEmptyUserInput());
+        checkOverBudget(numberOfManualLotto, money);
+        checkNegative(numberOfManualLotto);
+        System.out.println();
+
+        return numberOfManualLotto;
+    }
+
+    private void checkNegative(int numberOfManualLotto) {
+        if(numberOfManualLotto < 0){
+            throw new IllegalArgumentException("음수는 입력이 불가능합니다.");
+        }
+    }
+
+    private void checkOverBudget(int numberOfManualLotto, int money) {
+        if(money < numberOfManualLotto * Constants.PRICE_OF_LOTTO){
+            throw new IllegalArgumentException("예산을 넘는 수동복권은 구매가 불가능합니다.");
+        }
+    }
 }
