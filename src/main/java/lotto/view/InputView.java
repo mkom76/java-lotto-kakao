@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 /**
  * User Input을 받는 클래스입니다.
- * UserInputValidator 유틸클래스로 s각 사용자 입력에 대한 validation check도 진행합니다.
+ * UserInputValidator 유틸클래스로 각 사용자 입력에 대한 validation check도 진행합니다.
  */
 public class InputView {
     Scanner scanner;
@@ -21,6 +21,7 @@ public class InputView {
         int money = UserInputValidator.stringToInteger(moneyUserInput);
         UserInputValidator.checkUnderPriceOfLotto(money);
         System.out.println();
+
         return money;
     }
 
@@ -35,7 +36,7 @@ public class InputView {
         UserInputValidator.checkDuplicate(lottoNumbers);
         UserInputValidator.checkLottoNumbersInRange(lottoNumbers);
 
-        return lottoNumbers;
+        return Collections.unmodifiableList(lottoNumbers);
     }
 
     public int receiveWinBonusNumber(List<Integer> lottoNumbers) {
@@ -47,6 +48,7 @@ public class InputView {
         System.out.println();
         UserInputValidator.checkInRange(bonusNumber);
         UserInputValidator.checkDuplicateLottoNumberWithBonusNumber(lottoNumbers, bonusNumber);
+
         return bonusNumber;
     }
 
@@ -70,7 +72,8 @@ public class InputView {
             manualLottoList.add(receiveManualLottoNumber());
         }
         System.out.println();
-        return manualLottoList;
+
+        return Collections.unmodifiableList(manualLottoList);
     }
 
     public List<Integer> receiveManualLottoNumber() {
@@ -82,6 +85,6 @@ public class InputView {
         UserInputValidator.checkDuplicate(manualLottoNumbers);
         UserInputValidator.checkLottoNumbersInRange(manualLottoNumbers);
 
-        return manualLottoNumbers;
+        return Collections.unmodifiableList(manualLottoNumbers);
     }
 }
