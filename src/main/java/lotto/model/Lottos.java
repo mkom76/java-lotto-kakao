@@ -17,15 +17,19 @@ public class Lottos {
         int numberOfManualLottos = manualLottos.size();
         int numberOfAutomatedLottos = money / Constants.PRICE_OF_LOTTO - numberOfManualLottos;
 
-        addRandom(numberOfAutomatedLottos);
-        for (List<Integer> manualLotto : manualLottos){
-            lottos.add(new Lotto(manualLotto));
+        addAutomated(numberOfAutomatedLottos);
+        addManual(manualLottos);
+    }
+
+    private void addAutomated(int numberOfLottos) {
+        for (int i = 0; i < numberOfLottos; i++) {
+            lottos.add(new Lotto());
         }
     }
 
-    private void addRandom(int numberOfLottos) {
-        for (int i = 0; i < numberOfLottos; i++) {
-            lottos.add(new Lotto());
+    private void addManual(List<List<Integer>> manualLottos) {
+        for (List<Integer> manualLotto : manualLottos) {
+            lottos.add(new Lotto(manualLotto));
         }
     }
 
